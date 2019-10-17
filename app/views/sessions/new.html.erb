@@ -1,0 +1,15 @@
+<h1>Login please</h1>
+
+<%= form_tag '/log_in' do %>
+	<%= label_tag(:email, 'Email') %>
+	<br>
+	<%= text_field_tag(:email) %>
+	<br>
+	<br>
+	<%= label_tag(:password, 'Password') %>
+	<br>
+	<%= password_field_tag(:password) %>
+	<br>
+	<%= submit_tag('Log In') %>
+
+<% end %>

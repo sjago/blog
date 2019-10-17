@@ -1,0 +1,62 @@
+<% if @comment.errors %>
+	<ul>
+		<% @comment.errors.full_messages.each do |error| %>
+		<li><%= error %></li>
+		<% end %>
+	</ul>
+
+<% end %>
+
+
+<h1><%= @post.title %></h1>
+<br>
+<% if logged_in? %>
+<%= link_to(
+		'Vote',
+		votes_path(
+			voteable_type:'Post',
+			voteable_id: @post.id
+		), 
+			method: 'post' 
+		)
+			%>
+<% end %>
+TOTAL VOTES: <%= @post.votes.size %>
+<p><%= @post.content %></p>
+
+<% if logged_in? %>
+<%= form_for([@post, @comment]) do |f| %>
+	<p>
+		<%= f.label :content %>
+		<br>
+		<%= f.text_area :content %>
+	</p>	
+
+	<p>
+		<%= f.submit %>
+	</p>
+<% end %>
+<% end %>
+
+
+<h2>Comments</h2>
+
+<% @comments.each do |comment| %>
+	<hr>
+	<% if logged_in? %>
+	<%= link_to(
+		'Vote',
+		votes_path(
+			voteable_type:'Comment',
+			voteable_id: comment.id
+		), 
+			method: 'post' 
+		)
+			%>
+	<% end %>
+	<br>
+	<br>
+	TOTAL VOTES: <%= comment.votes.size %>
+	<br>
+	<div><%= comment.content %></div>
+<% end %>

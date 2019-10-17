@@ -1,0 +1,24 @@
+<% (1..@total_pages).each do |page| %>
+  <%= link_to("Page #{page} | ", posts_path(page: page)) %>
+<% end %>
+
+<% @posts.each do |post| %>
+	<h1><%= post.id %></h1>
+	TOTAL VOTES: <%= post.votes.size %>
+	<br>
+	<p><%= post.content %></p>
+	<% post.categories.each do |category| %>
+	<ul>    
+    <li><%= category.name %></li>
+    </ul>
+	<% end %>
+	<br>
+    <br>
+    <% if logged_in? %>
+
+    	<%= link_to('Vote', votes_path(voteable_type: 'Post', voteable_id: post.id, user_id: 1), method: 'post') %>
+
+    <% end %>
+<% end %>
+
+
