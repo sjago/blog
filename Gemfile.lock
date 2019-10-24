@@ -181,7 +181,7 @@ DEPENDENCIES
   coffee-rails (~> 4.1.0)
   jbuilder (~> 2.0)
   jquery-rails
-  pg (~> 0.15)
+  pg (~> 0.20)
   pry-rails
   rails (= 4.2.8)
   rails_12factor
