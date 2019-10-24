@@ -9,3 +9,9 @@ development:
   encoding: unicode
   database: blog_development
   pool: 5
+
+test:
+  adapter: postgresql
+  encoding: unicode
+  database: blog_development
+  pool: 5
