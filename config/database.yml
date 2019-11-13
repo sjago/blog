@@ -13,11 +13,11 @@ development:
 test:
   adapter: postgresql
   encoding: unicode
-  database: blog_development
+  database: blog_test
   pool: 5
 
 production:
   adapter: postgresql
   encoding: unicode
-  database: blog_development
+  database: blog_production
   pool: 5

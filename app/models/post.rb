@@ -11,12 +11,14 @@ class Post < ActiveRecord::Base
 
   has_many :votes, as: :voteable
 
+  before_create :calculate_slug
+
   BAD_CHARACTERS = /[ :\-\.]/
   IRR_CHARACTERS = /[@?$%&^*!]/
   
   def calculate_slug
 
-    title.downcase
+    self.slug = title.downcase
       .gsub(BAD_CHARACTERS, '_')
       .gsub(IRR_CHARACTERS, '')
       .gsub('__', '_')

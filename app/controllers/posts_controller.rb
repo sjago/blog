@@ -16,8 +16,8 @@ class PostsController < ApplicationController
 		@post = Post.new(attrs)
     #Calculate Slug
     #Add to post before saving
-    @post.slug = @post.calculate_slug
-
+    #@post.slug = @post.calculate_slug
+# require 'pry'; binding.pry
     if @post.save
       redirect_to post_path(@post)		
     else
@@ -34,10 +34,15 @@ class PostsController < ApplicationController
 
 	def show
 
-		@post = Post.find(params[:id])
-    @comments = @post.comments.includes(:votes)
-    @comment = @post.comments.build
-	
+		@post = Post.find_by(id: params[:id]) || Post.find_by(slug: params[:id])
+
+    if @post
+      @comments = @post.comments.includes(:votes)
+      @comment = @post.comments.build
+
+    else
+      render 'shared/not_found', status: 404
+	  end
 	end
 
 	def edit
